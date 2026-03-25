@@ -99,6 +99,18 @@ class User extends Model implements
     use HasFactory;
     use HasRealtimeIdentifier;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'username',
+        'email',
+        'password',
+        'email_verified',
+    ];
+
     public const USER_LEVEL_USER = 0;
     public const USER_LEVEL_ADMIN = 1;
 
