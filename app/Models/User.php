@@ -105,9 +105,18 @@ class User extends Model implements
      * @var array<int, string>
      */
     protected $fillable = [
+        'external_id',
         'username',
         'email',
+        'name_first',
+        'name_last',
         'password',
+        'language',
+        'use_totp',
+        'totp_secret',
+        'totp_authenticated_at',
+        'gravatar',
+        'root_admin',
         'email_verified',
     ];
 
@@ -130,23 +139,7 @@ class User extends Model implements
      */
     protected $table = 'users';
 
-    /**
-     * A list of mass-assignable variables.
-     */
-    protected $fillable = [
-        'external_id',
-        'username',
-        'email',
-        'name_first',
-        'name_last',
-        'password',
-        'language',
-        'use_totp',
-        'totp_secret',
-        'totp_authenticated_at',
-        'gravatar',
-        'root_admin',
-    ];
+    // ...existing code...
 
     /**
      * Cast values to correct type.

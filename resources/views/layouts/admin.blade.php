@@ -1,103 +1,60 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{ config('app.name', 'Pterodactyl') }} - @yield('title')</title>
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <meta name="_token" content="{{ csrf_token() }}">
-
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
-        <link rel="manifest" href="/favicons/manifest.json">
-        <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#bc6e3c">
-        <link rel="shortcut icon" href="/favicons/favicon.ico">
-        <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-        <meta name="theme-color" content="#0e4688">
-
-        @include('layouts.scripts')
-
-        @section('scripts')
-            {!! Theme::css('vendor/select2/select2.min.css?t={cache-version}') !!}
-            {!! Theme::css('vendor/bootstrap/bootstrap.min.css?t={cache-version}') !!}
-            {!! Theme::css('vendor/adminlte/admin.min.css?t={cache-version}') !!}
-            {!! Theme::css('vendor/adminlte/colors/skin-blue.min.css?t={cache-version}') !!}
-            {!! Theme::css('vendor/sweetalert/sweetalert.min.css?t={cache-version}') !!}
-            {!! Theme::css('vendor/animate/animate.min.css?t={cache-version}') !!}
-            {!! Theme::css('css/pterodactyl.css?t={cache-version}') !!}
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-
-            <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-            <![endif]-->
-        @show
-    </head>
-    <body class="hold-transition skin-blue fixed sidebar-mini">
-        <div class="wrapper">
-            <header class="main-header">
-                <a href="{{ route('index') }}" class="logo">
-                    <span>{{ config('app.name', 'Pterodactyl') }}</span>
-                </a>
-                <nav class="navbar navbar-static-top">
-                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            <li class="user-menu">
-                                <a href="{{ route('account') }}">
-                                    <img src="https://www.gravatar.com/avatar/{{ md5(strtolower(Auth::user()->email)) }}?s=160" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">{{ Auth::user()->name_first }} {{ Auth::user()->name_last }}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <li><a href="{{ route('index') }}" data-toggle="tooltip" data-placement="bottom" title="Exit Admin Control"><i class="fa fa-server"></i></a></li>
-                            </li>
-                            <li>
-                                <li><a href="{{ route('auth.logout') }}" id="logoutButton" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="fa fa-sign-out"></i></a></li>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ config('app.name', 'Pterodactyl') }} - @yield('title')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="manifest" href="/favicons/manifest.json">
+    <meta name="theme-color" content="#111827">
+    @include('layouts.scripts')
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen font-sans">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-950 border-r border-gray-800 flex flex-col">
+            <div class="h-16 flex items-center justify-center border-b border-gray-800">
+                <img src="/favicons/favicon-32x32.png" alt="Logo" class="h-8 w-8 mr-2 inline-block">
+                <span class="text-xl font-bold tracking-wide">{{ config('app.name', 'Pterodactyl') }}</span>
+            </div>
+            <nav class="flex-1 px-4 py-6">
+                <ul class="space-y-2">
+                    <li><a href="{{ route('admin.index') }}" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800 transition"><svg class="h-5 w-5 mr-2 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6m-6 0v6m0 0H7m6 0h6"/></svg>Overview</a></li>
+                    <li><a href="{{ route('admin.settings') }}" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800 transition"><svg class="h-5 w-5 mr-2 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09A1.65 1.65 0 0 0 12 3.09V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09c0 .66.26 1.3.73 1.77z"/></svg>Settings</a></li>
+                    <li><a href="{{ route('admin.api.index') }}" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800 transition"><svg class="h-5 w-5 mr-2 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 3v4m8-4v4"/></svg>Application API</a></li>
+                    <li><a href="{{ route('admin.databases') }}" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800 transition"><svg class="h-5 w-5 mr-2 text-yellow-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><rect x="3" y="7" width="18" height="13" rx="2"/></svg>Databases</a></li>
+                    <li><a href="{{ route('admin.locations') }}" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800 transition"><svg class="h-5 w-5 mr-2 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Locations</a></li>
+                    <!-- Weitere Menüpunkte nach Bedarf -->
+                </ul>
+            </nav>
+            <div class="p-4 border-t border-gray-800 mt-auto">
+                <form method="POST" action="{{ route('auth.logout') }}">
+                    @csrf
+                    <button type="submit" class="w-full flex items-center px-3 py-2 rounded-lg hover:bg-gray-800 transition text-red-400"><svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7"/><path d="M3 12a9 9 0 1 1 18 0 9 9 0 0 1-18 0z"/></svg>Logout</button>
+                </form>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 bg-gray-900 p-8 overflow-y-auto">
+            <header class="flex items-center justify-between mb-8">
+                <h1 class="text-3xl font-bold">@yield('title', 'Admin')</h1>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-400">{{ Auth::user()->name_first ?? '' }} {{ Auth::user()->name_last ?? '' }}</span>
+                    <img src="https://www.gravatar.com/avatar/{{ md5(strtolower(Auth::user()->email)) }}?s=40" class="rounded-full h-10 w-10" alt="User Image">
+                </div>
             </header>
-            <aside class="main-sidebar">
-                <section class="sidebar">
-                    <ul class="sidebar-menu">
-                        <li class="header">BASIC ADMINISTRATION</li>
-                        <li class="{{ Route::currentRouteName() !== 'admin.index' ?: 'active' }}">
-                            <a href="{{ route('admin.index') }}">
-                                <i class="fa fa-home"></i> <span>Overview</span>
-                            </a>
-                        </li>
-                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.settings') ?: 'active' }}">
-                            <a href="{{ route('admin.settings')}}">
-                                <i class="fa fa-wrench"></i> <span>Settings</span>
-                            </a>
-                        </li>
-                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.api') ?: 'active' }}">
-                            <a href="{{ route('admin.api.index')}}">
-                                <i class="fa fa-gamepad"></i> <span>Application API</span>
-                            </a>
-                        </li>
-                        <li class="header">MANAGEMENT</li>
-                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.databases') ?: 'active' }}">
-                            <a href="{{ route('admin.databases') }}">
-                                <i class="fa fa-database"></i> <span>Databases</span>
-                            </a>
-                        </li>
-                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.locations') ?: 'active' }}">
-                            <a href="{{ route('admin.locations') }}">
-                                <i class="fa fa-globe"></i> <span>Locations</span>
-                            </a>
-                        </li>
-                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.nodes') ?: 'active' }}">
-                            <a href="{{ route('admin.nodes') }}">
+            <section>
+                @yield('content')
+            </section>
+        </main>
+    </div>
+    @section('scripts')
+        {!! $asset->js('main.js') ?? '' !!}
+    @show
+</body>
+</html>
                                 <i class="fa fa-sitemap"></i> <span>Nodes</span>
                             </a>
                         </li>
