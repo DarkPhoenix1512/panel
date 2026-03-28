@@ -99,27 +99,6 @@ class User extends Model implements
     use HasFactory;
     use HasRealtimeIdentifier;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'external_id',
-        'username',
-        'email',
-        'name_first',
-        'name_last',
-        'password',
-        'language',
-        'use_totp',
-        'totp_secret',
-        'totp_authenticated_at',
-        'gravatar',
-        'root_admin',
-        'email_verified',
-    ];
-
     public const USER_LEVEL_USER = 0;
     public const USER_LEVEL_ADMIN = 1;
 
@@ -139,7 +118,23 @@ class User extends Model implements
      */
     protected $table = 'users';
 
-    // ...existing code...
+    /**
+     * A list of mass-assignable variables.
+     */
+    protected $fillable = [
+        'external_id',
+        'username',
+        'email',
+        'name_first',
+        'name_last',
+        'password',
+        'language',
+        'use_totp',
+        'totp_secret',
+        'totp_authenticated_at',
+        'gravatar',
+        'root_admin',
+    ];
 
     /**
      * Cast values to correct type.
