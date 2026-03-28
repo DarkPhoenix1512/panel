@@ -31,6 +31,12 @@ sudo -u www-data git pull origin $BRANCH
 
 echo "Composer Dependencies installieren als www-data..."
 sudo -u www-data composer install --no-dev --optimize-autoloader
+echo "Tailwind CSS bauen..."
+if [ -f ./node_modules/.bin/tailwindcss ]; then
+	./node_modules/.bin/tailwindcss -i ./resources/css/tailwind.css -o ./public/css/tailwind.css --minify
+else
+	npx tailwindcss -i ./resources/css/tailwind.css -o ./public/css/tailwind.css --minify
+fi
 
 echo "Datenbank Migration durchführen..."
 php artisan migrate --seed --force
